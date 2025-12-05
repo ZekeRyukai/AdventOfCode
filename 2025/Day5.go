@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"log"
 	"os"
 	"sort"
@@ -55,23 +54,6 @@ func D5P1() {
 			break
 		}
 	}
-	println("Lower:")
-	for _, l := range lower {
-		_ = l
-		println(l)
-	}
-	println("----")
-	println("Upper:")
-	for _, u := range upper {
-		_ = u
-		println(u)
-	}
-	println("----")
-	println("Numbers:")
-	for _, n := range nums {
-		_ = n
-		println(n)
-	}
 
 	for i := range ranges {
 		for _, n := range nums {
@@ -93,7 +75,6 @@ func D5P1() {
 				Next:
 					if !match {
 						valid = append(valid, n)
-						println("Valid number found:", n)
 					}
 				}
 			}
@@ -122,9 +103,6 @@ func D5P2() {
 				upper = append(upper, y)
 			}
 		}
-	}
-	for i := range lower {
-		println("Range", i, ":", lower[i], "-", upper[i])
 	}
 
 	for onoff {
@@ -164,19 +142,14 @@ func D5P2() {
 			continue
 		}
 		j++
-		// preserve the original data
-		// in[i], in[j] = in[j], in[i]
-		// only set what is required
 		lower[j] = lower[i]
 		upper[j] = upper[i]
 	}
 	lower = lower[:j+1]
 	upper = upper[:j+1]
-	fmt.Println(lower) // [1 2 3 4]
-	fmt.Println(upper) // [1 2 3 4]
+
 	for i := range lower {
 		sum += upper[i] - lower[i] + 1
-		println("New Ranges:", lower[i], "and", upper[i])
 	}
 	println("Sum of all ranges:", sum)
 }
